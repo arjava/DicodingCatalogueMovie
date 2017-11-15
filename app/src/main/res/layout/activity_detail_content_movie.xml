@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollViewDetails">
+<RelativeLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_main"
+    android:background="@color/colorPrimaryDark">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBarDetail"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewDetails"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_crop_original_black_24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewVote"
+        android:layout_below="@+id/imageViewDetails"
+        android:layout_alignParentLeft="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textTitleDetails"
+        android:layout_below="@+id/imageViewDetails"
+        android:layout_alignParentRight="true"
+        android:textAlignment="center"
+        android:padding="@dimen/dimen_main"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/overViewDetails"
+        android:layout_below="@+id/textTitleDetails"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/dimen_main"/>
+
+</RelativeLayout>
+
+</ScrollView>

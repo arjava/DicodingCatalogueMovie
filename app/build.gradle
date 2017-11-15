@@ -1,8 +1,5 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
@@ -15,19 +12,27 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "API_KEY", "\"a335a4721d43dd89695b62ad18073bae\"";
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_KEY", "\"a335a4721d43dd89695b62ad18073bae\"";
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile 'com.android.support:appcompat-v7:26.1.0',
+            'com.android.support:recyclerview-v7:26.1.0',
+            'com.android.support.constraint:constraint-layout:1.0.2'
+    //koneksi
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    //konveerter
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    //imageviewer
+    compile 'com.github.bumptech.glide:glide:3.8.0'
 }

@@ -1,0 +1,25 @@
+package com.arjava.dicodingcataloguemovie.util;
+
+import android.content.Context;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+/**
+ * Created by arjava on 11/15/17.
+ */
+
+public class ApiClient {
+
+    private static String BASE_URL = "https://api.themoviedb.org";
+
+
+    public static Retrofit getRetrofit(Context context) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit;
+    }
+}
