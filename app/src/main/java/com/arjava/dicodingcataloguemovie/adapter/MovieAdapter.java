@@ -14,8 +14,8 @@ import com.arjava.dicodingcataloguemovie.R;
 import com.arjava.dicodingcataloguemovie.activity.DetailMovies;
 import com.arjava.dicodingcataloguemovie.listener.RecyclerViewItemClickListener;
 import com.arjava.dicodingcataloguemovie.model.MovieItems;
+
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -25,6 +25,7 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    //create Object
     private List<MovieItems.ResultsBean> movieItemsList;
     private int rowLayout;
     private Context context;
@@ -32,12 +33,14 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private RecyclerViewItemClickListener recyclerViewItemClickListener;
     private String url_image = "http://image.tmdb.org/t/p/w342/";
 
+    //konstruktor
     public MovieAdapter(List<MovieItems.ResultsBean> movieItems, int rowLayout, Context context) {
         this.movieItemsList = movieItems;
         this.rowLayout = rowLayout;
         this.context = context;
     }
 
+    //mengatur tampilan layout
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -55,17 +58,24 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return movieViewHolder;
     }
 
+    //menampilkan hasil dari data yang kita ambil dari API
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
+        //mengambil posisi
         final MovieItems.ResultsBean result = movieItemsList.get(position);
+        //membuat holder
         final MovieAdapter.MovieViewHolder movieViewHolder = (MovieAdapter.MovieViewHolder) holder;
+        //poster_id (untuk mengambil gambar)
         final String id_poster = result.getPoster_path();
         final String poster_image = url_image+id_poster;
 
+        //menampilkan ke dalam textView
         movieViewHolder.textViewTitle.setText(result.getTitle());
         movieViewHolder.textViewDescription.setText(result.getOverview());
         movieViewHolder.textViewdate.setText(result.getRelease_date());
+
+        //menampilkan gambar
         Glide
                 .with(context)
                 .load(poster_image)
@@ -73,6 +83,8 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 .override(300,400)
                 .placeholder(R.drawable.ic_crop_original_black_24dp)
                 .into(movieViewHolder.imageView);
+
+        //penanganan ketika layout diklik
         movieViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +99,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
+    //inisiasi object
     static class MovieViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayout linearLayout;
@@ -105,6 +118,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
+    //mengambil posisi
     @Override
     public int getItemCount() {
         return movieItemsList == null ? 0: movieItemsList.size();

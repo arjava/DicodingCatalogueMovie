@@ -13,10 +13,12 @@ android {
     }
     buildTypes {
         debug {
+            //apikey
             buildConfigField "String", "API_KEY", "\"a335a4721d43dd89695b62ad18073bae\"";
         }
         release {
             minifyEnabled false
+            //apikey
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "API_KEY", "\"a335a4721d43dd89695b62ad18073bae\"";
         }

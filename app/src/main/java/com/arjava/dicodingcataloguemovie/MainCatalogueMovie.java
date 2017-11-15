@@ -2,7 +2,6 @@ package com.arjava.dicodingcataloguemovie;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,7 +20,6 @@ import com.arjava.dicodingcataloguemovie.model.MovieItems;
 import com.arjava.dicodingcataloguemovie.util.ApiClient;
 import com.arjava.dicodingcataloguemovie.util.ApiInterface;
 
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,6 +58,7 @@ public class MainCatalogueMovie extends AppCompatActivity {
         getMovieFirst();
     }
 
+    //menggunakan search berdasarkan input user
     public void getMovie() {
         String input_movie = inputSearch.getText().toString();
         Log.d(TAG, "onClick: input_movie "+ input_movie);
@@ -91,6 +90,7 @@ public class MainCatalogueMovie extends AppCompatActivity {
         });
     }
 
+    //launch pertama (menggunakan Up Coming)
     public void getMovieFirst() {
 
         progressBar.setVisibility(View.VISIBLE);
@@ -99,6 +99,7 @@ public class MainCatalogueMovie extends AppCompatActivity {
         ApiInterface apiInterface = ApiClient.getRetrofit(getApplicationContext()).create(ApiInterface.class);
         Call<MovieItems> call = apiInterface.getMovieUpcoming();
         call.enqueue(new Callback<MovieItems>() {
+            //ketika server meresponse
             @Override
             public void onResponse(Call<MovieItems> call, Response<MovieItems> response) {
                 MovieItems data = response.body();
@@ -112,6 +113,7 @@ public class MainCatalogueMovie extends AppCompatActivity {
                 }
             }
 
+            //ketika gagal mendapatkan response
             @Override
             public void onFailure(Call<MovieItems> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
@@ -121,6 +123,7 @@ public class MainCatalogueMovie extends AppCompatActivity {
         });
     }
 
+    //penanganan untuk tombol back
     @Override
     public void onBackPressed() {
         AlertDialog.Builder alert = new AlertDialog.Builder(MainCatalogueMovie.this);
@@ -128,7 +131,6 @@ public class MainCatalogueMovie extends AppCompatActivity {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//                        moveTaskToBack(true);
                         finish();
                     }
                 })

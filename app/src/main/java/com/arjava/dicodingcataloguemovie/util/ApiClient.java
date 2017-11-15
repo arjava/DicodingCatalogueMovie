@@ -11,9 +11,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
+    //url utama API
     private static String BASE_URL = "https://api.themoviedb.org";
 
-
+    //converter to object
     public static Retrofit getRetrofit(Context context) {
 
         Retrofit retrofit = new Retrofit.Builder()

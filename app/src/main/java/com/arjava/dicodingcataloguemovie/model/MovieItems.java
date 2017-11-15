@@ -2,7 +2,7 @@ package com.arjava.dicodingcataloguemovie.model;
 
 import java.util.List;
 
-/**
+/*
  * Created by arjava on 11/13/17.
  */
 
